@@ -1,2 +1,2 @@
-# threat-feeds
-Repository for curated threat feeds
+# threat-feed
+Repository for curated threat sources
