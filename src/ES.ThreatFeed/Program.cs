@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using ES.DnsBlockFeed;
+using ES.ThreatFeed.Provider;
 using ES.ThreatFeed.Provider.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

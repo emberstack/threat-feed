@@ -2,6 +2,14 @@
   "ThreatFeeds": {
     "DomainThreatFeeds": [
       {
+        "Description": "EmberStack Domain Threat Feed - Advertising",
+        "Url": "https://raw.githubusercontent.com/emberstack/threat-feed/main/src/collections/Domains.Advertising.txt",
+        "Format": "list",
+        "Categories": [
+          "Advertising"
+        ]
+      },
+      {
         "Description": "Steven Black's Hosts File",
         "Url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
         "Format": "hosts-file",
