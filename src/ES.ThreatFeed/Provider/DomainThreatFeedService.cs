@@ -65,6 +65,13 @@ namespace ES.ThreatFeed.Provider
                     if (uri.IsLoopback) continue;
                     if (uri.HostNameType != UriHostNameType.Dns) continue;
 
+                    var entryParts = entry.Split(".", StringSplitOptions.RemoveEmptyEntries);
+                    if (entryParts.Length < 2) continue;
+                    if (entryParts.Last() == "localhost" ||
+                        entryParts.Last() == "localdomain" ||
+                        entryParts.Last() == "broadcast" ||
+                        entryParts.Last() == "broadcastdomain") continue;
+
                     result.Add(entry);
                 }
                 return result.ToList();
@@ -83,17 +90,22 @@ namespace ES.ThreatFeed.Provider
                     rawLine = rawLine.Trim();
                     if (string.IsNullOrWhiteSpace(rawLine)) continue;
 
-                    if (!rawLine.StartsWith("0.0.0.0")) continue;
 
                     var lineParts = rawLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
                     if (!lineParts.Any()) continue;
                     var entry = lineParts.Last().ToLowerInvariant().Trim();
 
-
-
                     var uri = new Uri($"protocol://{entry}", UriKind.Absolute);
                     if (uri.IsLoopback) continue;
                     if (uri.HostNameType != UriHostNameType.Dns) continue;
+
+
+                    var entryParts = entry.Split(".", StringSplitOptions.RemoveEmptyEntries);
+                    if (entryParts.Length < 2) continue;
+                    if (entryParts.Last() == "localhost" ||
+                       entryParts.Last() == "localdomain" ||
+                       entryParts.Last() == "broadcast" ||
+                       entryParts.Last() == "broadcastdomain") continue;
 
                     result.Add(entry);
                 }
