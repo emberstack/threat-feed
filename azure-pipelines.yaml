@@ -12,6 +12,14 @@ trigger:
       - src/*
       - azure-pipelines.yaml
 
+schedules:
+- cron: "0 0 * * *" 
+  displayName: Daily at midnight 
+  branches:
+    include:
+    - main
+  always: true
+
 stages:
   - stage: ci
     displayName: "CI"
