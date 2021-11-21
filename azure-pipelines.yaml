@@ -39,7 +39,7 @@ stages:
               workingDirectory: '$(Build.ArtifactStagingDirectory)/app'
          
           - publish: "$(Build.ArtifactStagingDirectory)/app/Output"
-            artifact: "kubectl"
+            artifact: "lists"
             displayName: "artifacts - publish - lists"
 
 
