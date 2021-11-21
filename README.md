@@ -36,6 +36,9 @@ Below is a list of sources and a description for each:
 | ------------------------------------ | ------------------------------------------------ | ------------------------------------------------------- |
 | Steven Black's Hosts File            | Type: Domain threats. Categories: `Advertising`  | Source Home: https://github.com/StevenBlack/hosts <br/> This reputable source is used in a lot of applications, including `Pi-hole`. |
 | EmberStack's collections            | Type: Domain threats. Categories: `Advertising`  | Source Home: https://github.com/emberstack/threat-feed <br/> This collection of threats is manually curated by the ES team and validated against multiple threat mitigating systems. |
+| AdAway default blocklist            | Type: Domain threats. Categories: `Advertising`  | Source Home: https://github.com/AdAway/adaway.github.io/ |
+| The Firebog            | Type: Domain threats. Categories: `Advertising`  | Source Home: https://firebog.net/ |
+| Ad filter list by Disconnect            | Type: Domain threats. Categories: `Advertising`  | Source Home: https://disconnect.me/ |
 
 ### Update Frequency
 

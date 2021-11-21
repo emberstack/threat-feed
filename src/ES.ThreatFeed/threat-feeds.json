@@ -16,6 +16,46 @@
         "Categories": [
           "Advertising"
         ]
+      },
+      {
+        "Description": "AdAway default blocklist",
+        "Url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt",
+        "Format": "hosts-file",
+        "Categories": [
+          "Advertising"
+        ]
+      },
+      {
+        "Description": "The Firebog - AdguardDNS",
+        "Url": "https://v.firebog.net/hosts/AdguardDNS.txt",
+        "Format": "list",
+        "Categories": [
+          "Advertising"
+        ]
+      },
+      {
+        "Description": "The Firebog - Admiral",
+        "Url": "https://v.firebog.net/hosts/Admiral.txt",
+        "Format": "list",
+        "Categories": [
+          "Advertising"
+        ]
+      },
+      {
+        "Description": "The Firebog - Easylist",
+        "Url": "https://v.firebog.net/hosts/Easylist.txt",
+        "Format": "list",
+        "Categories": [
+          "Advertising"
+        ]
+      },
+      {
+        "Description": "Ad filter list by Disconnect",
+        "Url": "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt",
+        "Format": "list",
+        "Categories": [
+          "Advertising"
+        ]
       }
     ]
   }
