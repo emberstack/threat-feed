@@ -56,13 +56,13 @@ end
 
 ### 3. Set up DNS Server to use DNS Filter profile
 
-#### Using the GUI
+#### GUI
 Using the GUI make sure you have `DNS Database` feature enabled under `System`-> `Feature Visibility`.  
 Navigate to `Network`-> `DNS Servers`.  
 Create a new `DNS Service on Interface` (for example for `internal`) or edit an existing one. Enable `DNS Filter` and select the profile you configured (if you have multiple profiles enabled).
 
 
-#### Using the CLI
+#### CLI
 Using the CLI (web management or SSH):
 ```
 config system dns-database
