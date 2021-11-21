@@ -1,0 +1,77 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+
+variables:
+  buildConfiguration: "Release"
+
+trigger:
+  branches:
+    include:
+      - "*"
+  paths:
+    include:
+      - src/*
+      - azure-pipelines.yaml
+
+stages:
+  - stage: ci
+    displayName: "CI"
+    jobs:
+      - job: build
+        displayName: "Build"
+        pool:
+          vmImage: windows-2022
+        steps:
+          - task: DotNetCoreCLI@2
+            displayName: 'dotnet publish'
+            inputs:
+              command: publish
+              publishWebProjects: false
+              projects: '**/*.csproj'
+              arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)/app'
+              zipAfterPublish: false
+              modifyOutputPath: false
+
+          - task: DotNetCoreCLI@2
+            displayName: 'dotnet  run'
+            inputs:
+              command: custom
+              custom: ES.ThreatFeed.dll
+              workingDirectory: '$(Build.ArtifactStagingDirectory)/app'
+         
+          - publish: "$(Build.ArtifactStagingDirectory)/app/Output"
+            artifact: "kubectl"
+            displayName: "artifacts - publish - lists"
+
+
+  - ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+    - stage: cd
+      displayName: "CD"
+      dependsOn: "ci"
+      condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'Manual'), in(variables['Build.SourceBranchName'], 'main'))
+      jobs:
+        - job: release
+          displayName: "Release"
+          pool:
+            vmImage: ubuntu-latest
+          variables:
+            - group: "OpenSource.GitHub"
+          steps:
+            - checkout: none
+
+
+            - download: current
+              artifact: "lists"
+              displayName: "artifacts - download - lists"
+
+           
+            - task: GitHubRelease@1
+              displayName: "github - create release"
+              inputs:
+                gitHubConnection: GitHub
+                repositoryName: "emberstack/threat-feed"
+                tagSource: userSpecifiedTag
+                tag: "v$(Build.BuildNumber)"
+                title: "Release v$(Build.BuildNumber)"
+                releaseNotesSource: inline
+                releaseNotes: "The release process is automated."
+                assets: "$(Pipeline.Workspace)/lists/*.*"
