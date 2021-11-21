@@ -1,0 +1,14 @@
+{
+  "ThreatFeeds": {
+    "DomainThreatFeeds": [
+      {
+        "Description": "Steven Black's Hosts File",
+        "Url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+        "Format": "hosts-file",
+        "Categories": [
+          "Advertising"
+        ]
+      }
+    ]
+  }
+}
