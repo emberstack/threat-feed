@@ -1,0 +1,52 @@
+name: Pipeline
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "src/**"
+      - ".github/workflows/**"
+
+env:
+  version: 1.1.${{github.run_number}}
+
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: dotnet - setup
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.x'
+
+      - name: dotnet - publish app
+        run: |
+          dotnet publish src/ES.ThreatFeed/ES.ThreatFeed.csproj -c Release -o app
+
+      - name: dotnet - run app
+        run: |
+          dotnet ES.ThreatFeed.dll
+        working-directory: ./app
+
+      - name: artifacts - prepare directories
+        run: |
+          mkdir -p .artifacts/helm
+          mkdir -p .artifacts/kubectl
+
+     
+      - name: "artifacts - upload - feed"
+        uses: actions/upload-artifact@v2
+        with:
+          name: feed
+          path: .app/Output
+
+     
