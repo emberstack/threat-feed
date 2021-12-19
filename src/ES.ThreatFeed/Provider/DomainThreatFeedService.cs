@@ -154,7 +154,7 @@ namespace ES.ThreatFeed.Provider
 
                 _logger.LogDebug("{name} contains {domains} records", feed.Description, entries.Count);
 
-                foreach (var category in feed.Categories)
+                foreach (var category in feed.Categories ?? Array.Empty<string>())
                 {
                     if (!entriesByCategory.ContainsKey(category)) entriesByCategory.Add(category, new List<string>());
                     entriesByCategory[category].AddRange(entries);
