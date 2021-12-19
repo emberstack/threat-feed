@@ -30,23 +30,17 @@ jobs:
 
       - name: dotnet - publish app
         run: |
-          dotnet publish src/ES.ThreatFeed/ES.ThreatFeed.csproj -c Release -o app
+          dotnet publish src/ES.ThreatFeed/ES.ThreatFeed.csproj -c Release -o ${{ github.workspace }}/app
 
       - name: dotnet - run app
         run: |
           dotnet ES.ThreatFeed.dll
-        working-directory: ./app
+        working-directory: ${{ github.workspace }}/app
 
-      - name: artifacts - prepare directories
-        run: |
-          mkdir -p .artifacts/helm
-          mkdir -p .artifacts/kubectl
-
-     
       - name: "artifacts - upload - feed"
         uses: actions/upload-artifact@v2
         with:
           name: feed
-          path: .app/Output
+          path: ${{ github.workspace }}/app/Output
 
      
