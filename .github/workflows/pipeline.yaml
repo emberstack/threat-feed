@@ -67,7 +67,7 @@ jobs:
 
       - name: github - publish - feed
         run: |
-
+          cd threat-feed
           rm -f Feed
           mkdir -p Feed
           cp -a ${{ github.workspace }}/.artifacts/feed/.  Feed
