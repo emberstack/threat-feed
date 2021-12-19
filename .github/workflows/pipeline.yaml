@@ -9,6 +9,8 @@ on:
     paths:
       - "src/**"
       - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
 
 env:
   version: 1.1.${{github.run_number}}
