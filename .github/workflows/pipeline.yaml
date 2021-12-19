@@ -44,3 +44,37 @@ jobs:
           path: ${{ github.workspace }}/app/Output
 
      
+
+  cd:
+    name: CD
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: artifacts - download - feed
+        uses: actions/download-artifact@v2
+        with:
+          name: feed
+          path: .artifacts/feed
+
+
+      - name: github - checkout 
+        uses: actions/checkout@v2
+        with:
+          token:  ${{ secrets.ES_GITHUB_PAT }}
+          path: threat-feed
+
+
+      - name: github - publish - feed
+        run: |
+
+          rm -f Feed
+          mkdir -p Feed
+          cp -a ${{ github.workspace }}/.artifacts/feed/.  Feed
+
+          git config user.name "Romeo Dumitrescu"
+          git config user.email "5931333+winromulus@users.noreply.github.com"
+          git add .
+          git status
+          git commit -m "Updated feed"
+          git push
