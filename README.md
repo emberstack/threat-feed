@@ -1,7 +1,7 @@
 # Threat Feed
 This repository contains a multi-format feed of threat sources (Advertising, Malware, Phishing, etc.) that can be imported in applications or appliances to filter or block traffic.
 
-[![Build Status](https://dev.azure.com/emberstack/OpenSource/_apis/build/status/threat-feed?branchName=main)](https://dev.azure.com/emberstack/OpenSource/_build/latest?definitionId=23&branchName=main)
+[![Pipeline](https://github.com/emberstack/threat-feed/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/emberstack/threat-feed/actions/workflows/pipeline.yaml)
 [![license](https://img.shields.io/github/license/emberstack/threat-feed.svg?style=flat-square)](LICENSE)
 
 ## Support
