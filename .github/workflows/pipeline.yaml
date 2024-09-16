@@ -23,10 +23,10 @@ jobs:
     steps:
 
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: dotnet - setup
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '6.x'
 
@@ -40,7 +40,7 @@ jobs:
         working-directory: ${{ github.workspace }}/app
 
       - name: "artifacts - upload - feed"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: feed
           path: ${{ github.workspace }}/app/Output
@@ -54,14 +54,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: artifacts - download - feed
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: feed
           path: .artifacts/feed
 
 
       - name: github - checkout 
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           token:  ${{ secrets.ES_GITHUB_PAT }}
           path: threat-feed
