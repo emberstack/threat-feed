@@ -95,9 +95,16 @@ namespace ES.ThreatFeed.Provider
                     if (!lineParts.Any()) continue;
                     var entry = lineParts.Last().ToLowerInvariant().Trim();
 
-                    var uri = new Uri($"protocol://{entry}", UriKind.Absolute);
-                    if (uri.IsLoopback) continue;
-                    if (uri.HostNameType != UriHostNameType.Dns) continue;
+                    try
+                    {
+                        var uri = new Uri($"protocol://{entry}", UriKind.Absolute);
+                        if (uri.IsLoopback) continue;
+                        if (uri.HostNameType != UriHostNameType.Dns) continue;
+                    }
+                    catch(Exception)
+                    {
+                        continue;
+                    }
 
 
                     var entryParts = entry.Split(".", StringSplitOptions.RemoveEmptyEntries);
